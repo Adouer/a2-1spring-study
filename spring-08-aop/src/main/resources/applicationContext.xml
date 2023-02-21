@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--容器注册bean-->
+    <bean id="userService" class="com.adouer.service.UserServiceImpl"/>
+    <bean id="beforLog" class="com.adouer.log.BeforLog"/>
+    <bean id="afterLog" class="com.adouer.log.AfterLog"/>
+
+   <!--
+   方式一【spirng API接口】
+   &lt;!&ndash;配置aop&ndash;&gt;
+    <aop:config>
+        &lt;!&ndash;配置切入点,id随便，execution（执行位置 包名.类名.*(..)）*代表所有方法（..）代表所有参数&ndash;&gt;
+        <aop:pointcut id="pointcut" expression="execution(* com.adouer.service.UserServiceImpl.*(..))"/>
+
+        &lt;!&ndash;增加环绕 advisor：表示环绕&ndash;&gt;
+        <aop:advisor advice-ref="beforLog" pointcut-ref="pointcut"/>
+        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
+    </aop:config>-->
+
+
+  <!--方式二【自定义切面类】-->
+   <!-- <bean id="diyPointCut" class="com.adouer.diy.DiyPointCut"/>
+    <aop:config>
+        &lt;!&ndash;定义切面及需要引用的切面类&ndash;&gt;
+        <aop:aspect id="aspect1" ref="diyPointCut">
+            &lt;!&ndash;配置切入点&ndash;&gt;
+            <aop:pointcut id="pc1" expression="execution(* com.adouer.service.UserServiceImpl.*(..))"/>
+            &lt;!&ndash;指定该切入点需要执行的方法&ndash;&gt;
+            <aop:before method="before" pointcut-ref="pc1"/>
+            <aop:after method="after" pointcut-ref="pc1"/>
+        </aop:aspect>
+    </aop:config>-->
+
+    <!--方式三【使用注解】-->
+    <!--注册切面类-->
+    <!--开启AOP注解-->
+    <aop:aspectj-autoproxy/>
+    <!-- 激活组件扫描功能,子包下面自动扫描通过注解配置的组件 -->
+    <context:component-scan base-package="com.adouer.annotation"/>
+</beans>

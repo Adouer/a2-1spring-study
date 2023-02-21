@@ -1,0 +1,4 @@
+<beans>
+    <bean id="user1" class="com.adouer.pojo.User"></bean>
+    <bean id="user2" class="com.adouer.pojo.User"></bean>
+</beans>

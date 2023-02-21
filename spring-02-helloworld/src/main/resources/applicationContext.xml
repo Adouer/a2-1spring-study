@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--注册bean-->
+    <bean id="hello" class="com.adouer.Hello" name="hello3,hello4">
+        <!--注入属性-->
+        <property name="name" value="hello world"></property>
+    </bean>
+<!--起别名 name:需要起别名的bean id , alias 为别名-->
+    <alias name="hello" alias="hello2"/>
+<!--导入其他配置文件-->
+    <import resource="bean.xml"/>
+</beans>
