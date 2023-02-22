@@ -8,19 +8,18 @@ public class Proxy implements Rent {
      * 代理对象组合真实主题
      */
     private Host host;
-    public Proxy() {
-    }
 
     /**
      * 构造方法，将代理注入
-     * @param host
+     * @param host 真实主题【被代理对象】
      */
     public Proxy(Host host) {
         this.host = host;
     }
 
     /**
-     * 委托代理类
+     * 委托代理类【重点】
+     * 在实际租房前后增加逻辑
      */
     @Override
     public void rent() {
@@ -33,7 +32,7 @@ public class Proxy implements Rent {
      * 看房
      */
     public void seeHouse() {
-        System.out.println("中介带你看房");
+        System.out.println("中介带客户看房");
     }
 
     /**
