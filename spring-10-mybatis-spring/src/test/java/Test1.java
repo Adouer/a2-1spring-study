@@ -9,7 +9,7 @@ import java.util.List;
 public class Test1 {
     public static void main(String[] args) throws IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        UserMapperr userMapperr = context.getBean("userMapper", UserMapperr.class);
+        UserMapperr userMapperr = context.getBean("userMapperr", UserMapperr.class);
         List<User> users = userMapperr.queryAll();
         for (User user : users) {
             System.out.println(user);
